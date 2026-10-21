@@ -5,7 +5,9 @@ import { Titlebar } from "@/components/titlebar";
 import { Sidebar } from "@/components/sidebar";
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
 import { Outlet } from "@tanstack/react-router";
-import { TanStackRouterDevtools } from "@tanstack/react-router-devtools";
+import { TanStackDevtools } from "@tanstack/react-devtools";
+import { TanStackRouterDevtoolsPanel } from "@tanstack/react-router-devtools";
+import { router } from "@/main";
 
 const href = convertFileSrc("controls.css", "tauri-plugin-decoration");
 document.documentElement.style.setProperty("--tauri-plugin-decoration-ready", "ready");
@@ -25,7 +27,14 @@ function App() {
         <Sidebar className="absolute h-full" />
         <main className="flex flex-1 min-h-0 flex-col">
           <Outlet />
-          <TanStackRouterDevtools />
+          <TanStackDevtools
+          plugins={[
+            {
+                name: "TanStack Router",
+                render: <TanStackRouterDevtoolsPanel router={router}/>
+            }
+          ]}
+          />
         </main>
       </div>
       <footer className="flex z-11 h-7 shrink-0 border-t">
