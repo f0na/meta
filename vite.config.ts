@@ -4,12 +4,21 @@ import react from "@vitejs/plugin-react";
 import process from "node:process";
 import tailwindcss from "@tailwindcss/vite";
 import iconifyOffline from "vite-plugin-iconify-offline";
+import { tanstackRouter } from "@tanstack/router-plugin/vite";
 
 const host = process.env.TAURI_DEV_HOST;
 
 // https://vite.dev/config/
 export default defineConfig(() => ({
-  plugins: lazyPlugins(() => [react(), tailwindcss(), iconifyOffline({ exclude: ["max-sm"] })]),
+  plugins: lazyPlugins(() => [
+    tanstackRouter({
+      target: "react",
+      autoCodeSplitting: true,
+    }),
+    react(),
+    tailwindcss(),
+    iconifyOffline({ exclude: ["max-sm"] }),
+  ]),
 
   // Vite options tailored for Tauri development and only applied in `tauri dev` or `tauri build`
   //

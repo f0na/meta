@@ -1,0 +1,31 @@
+.loader {
+  width: 128px;
+  height: 128px;
+  overflow: hidden; /* 只露出第一帧 */
+}
+
+.loader-strip {
+  width: 128px;
+  height: 512px; /* 4帧 × 48px，整张精灵图高度 */
+  background-image: url("./loading/loading-long-light.png"); /* 4帧竖向排列 */
+  background-repeat: no-repeat;
+  background-size: 128px 512px;
+
+  will-change: transform;
+  animation: play 1.4s steps(4) infinite;
+}
+
+@media (prefers-color-scheme: dark) {
+  .loader-strip {
+    background-image: url("./loading/loading-long-dark.png");
+  }
+}
+
+@keyframes play {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-512px);
+  } /* 上移整张图高度 */
+}
