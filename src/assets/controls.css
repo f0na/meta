@@ -248,3 +248,20 @@
     display: block;
   }
 }
+
+/* 插件按钮只认系统 prefers-color-scheme，这里让它跟随应用主题 */
+html:not(.dark) [data-tauri-plugin-decoration-root] [data-tauri-decoration-control] {
+  color: #202020;
+}
+html:not(.dark) [data-tauri-plugin-decoration-root] [data-tauri-decoration-control]:not([data-tauri-decoration-control="close"]):hover,
+html:not(.dark) [data-tauri-plugin-decoration-root] [data-tauri-decoration-control]:not([data-tauri-decoration-control="close"])[data-tauri-decoration-hover] {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+html.dark [data-tauri-plugin-decoration-root] [data-tauri-decoration-control] {
+  color: #f5f5f5;
+}
+html.dark [data-tauri-plugin-decoration-root] [data-tauri-decoration-control]:not([data-tauri-decoration-control="close"]):hover,
+html.dark [data-tauri-plugin-decoration-root] [data-tauri-decoration-control]:not([data-tauri-decoration-control="close"])[data-tauri-decoration-hover] {
+  background: rgba(255, 255, 255, 0.1);
+}

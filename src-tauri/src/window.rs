@@ -7,9 +7,11 @@ pub async fn show_window(app: AppHandle) {
         eprintln!("找不到main窗口");
         return
     };
-    
-    while win.activate_decoration().await.is_ok() {
-        break;
+
+    // 必须在前端挂载之后调用（见 src/app.tsx 的 useEffect）。
+    if let Err(error) = win.activate_decoration().await {
+        // 插件在失败时已自行恢复原生边框，这里只负责把原因打出来
+        eprintln!("decoration 激活失败: {error:?}");
     }
 
     #[cfg(target_os = "macos")]

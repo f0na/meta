@@ -1,10 +1,11 @@
 import { defineConfig, lazyPlugins } from "vite-plus";
-import react from "@vitejs/plugin-react";
+import react, { reactCompilerPreset } from "@vitejs/plugin-react";
 // @ts-expect-error type error without @types/node package
 import process from "node:process";
 import tailwindcss from "@tailwindcss/vite";
 import iconifyOffline from "vite-plugin-iconify-offline";
 import { tanstackRouter } from "@tanstack/router-plugin/vite";
+import babel from '@rolldown/plugin-babel';
 
 const host = process.env.TAURI_DEV_HOST;
 
@@ -16,6 +17,9 @@ export default defineConfig(() => ({
       autoCodeSplitting: true,
     }),
     react(),
+    babel({
+      presets: [reactCompilerPreset()]
+    }),
     tailwindcss(),
     iconifyOffline({ exclude: ["max-sm"] }),
   ]),

@@ -1,12 +1,4 @@
-import { memo } from "react";
-
-/**
- * 标题栏不接收任何 props，并冻结在 memo 里：
- * App / 页面里的任何 state 变化都不会让它重新渲染。
- * 布局上它是 flow 中的独立一行，main 是它下方独立的滚动容器，
- * 二者不共享滚动区域，main 的内容永远画不到这里来。
- */
-export const Titlebar = memo(function Titlebar() {
+export const Titlebar = () => {
   return (
     <header
       data-tauri-drag-region
@@ -21,4 +13,4 @@ export const Titlebar = memo(function Titlebar() {
       </span>
     </header>
   );
-});
+};

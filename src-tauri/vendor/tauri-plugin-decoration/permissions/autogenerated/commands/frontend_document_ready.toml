@@ -1,0 +1,13 @@
+# Automatically generated - DO NOT EDIT!
+
+"$schema" = "../../schemas/schema.json"
+
+[[permission]]
+identifier = "allow-frontend-document-ready"
+description = "Enables the frontend_document_ready command without any pre-configured scope."
+commands.allow = ["frontend_document_ready"]
+
+[[permission]]
+identifier = "deny-frontend-document-ready"
+description = "Denies the frontend_document_ready command without any pre-configured scope."
+commands.deny = ["frontend_document_ready"]
